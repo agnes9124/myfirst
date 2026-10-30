@@ -104,7 +104,9 @@ export default function Home() {
         <Title>Gallery</Title>
         <div className="columns-2 gap-4 md:columns-3">
           {gallery.map((g) => (
-            <Art key={g.alt} hue={g.hue} pos={g.pos} className={`mb-4 w-full break-inside-avoid border border-white/10 ${g.h}`} />
+            <div key={g.src} className="gl-wrap scan relative mb-4 break-inside-avoid overflow-hidden border border-white/10">
+              <img src={g.src} alt={g.alt} width={g.w} height={g.h} loading="lazy" className="gl-img h-auto w-full" />
+            </div>
           ))}
         </div>
       </section>
