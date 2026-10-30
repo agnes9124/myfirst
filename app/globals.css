@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { scroll-behavior: smooth; }
+body { overflow-x: hidden; }
+::selection { background: #ff003c; color: #fff; }
+
+.grain {
+  position: fixed; inset: -50%; z-index: 60; pointer-events: none; opacity: .14; mix-blend-mode: screen;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 1s steps(6) infinite;
+}
+@keyframes grain { 0%{transform:translate(0,0)} 20%{transform:translate(-4%,3%)} 40%{transform:translate(3%,-5%)} 60%{transform:translate(-2%,4%)} 80%{transform:translate(5%,2%)} 100%{transform:translate(0,0)} }
+
+.scan { position: relative; }
+.scan::after { content:""; position:absolute; inset:0; pointer-events:none;
+  background: repeating-linear-gradient(0deg, rgba(0,0,0,.28) 0 1px, transparent 1px 3px); }
+
+/* glitch text: data-text must equal the text */
+.glitch { position: relative; display: inline-block; }
+.glitch::before, .glitch::after { content: attr(data-text); position:absolute; inset:0; overflow:hidden; }
+.glitch::before { color:#ff003c; clip-path:inset(0 0 100% 0); animation: gl1 3.2s infinite steps(1); }
+.glitch::after  { color:#8a2be2; clip-path:inset(100% 0 0 0); animation: gl2 2.6s infinite steps(1); }
+@keyframes gl1 { 0%,86%,100%{clip-path:inset(0 0 100% 0)} 88%{clip-path:inset(10% 0 55% 0);transform:translate(-6px,0)} 92%{clip-path:inset(40% 0 30% 0);transform:translate(4px,0)} 96%{clip-path:inset(0 0 70% 0);transform:translate(-3px,0)} }
+@keyframes gl2 { 0%,80%,100%{clip-path:inset(100% 0 0 0)} 82%{clip-path:inset(60% 0 10% 0);transform:translate(6px,0)} 90%{clip-path:inset(20% 0 50% 0);transform:translate(-5px,0)} 95%{clip-path:inset(75% 0 0 0);transform:translate(3px,0)} }
+.glitch:hover::before, .glitch:hover::after { animation-duration: .5s; }
+
+.gl-wrap:hover .gl-img { animation: imgglitch .45s steps(2) 1; filter: drop-shadow(4px 0 0 #ff003c) drop-shadow(-4px 0 0 #8a2be2) saturate(1.3); }
+@keyframes imgglitch { 0%{transform:translate(0)} 25%{transform:translate(-5px,2px) skewX(3deg)} 50%{transform:translate(4px,-2px)} 75%{transform:translate(-2px,1px) skewX(-2deg)} 100%{transform:translate(0)} }
+
+.btn { display:inline-flex; align-items:center; justify-content:center; padding:.9rem 1.4rem; border:1px solid #ff003c; font-weight:700; letter-spacing:.04em; transition:.15s; }
+.btn:hover { background:#ff003c; box-shadow:0 0 24px rgba(255,0,60,.55); }
+.btn-alt { border-color:#8a2be2; }
+.btn-alt:hover { background:#8a2be2; box-shadow:0 0 24px rgba(138,43,226,.55); }
+:focus-visible { outline:2px solid #ff003c; outline-offset:3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .grain, .glitch::before, .glitch::after, .gl-wrap:hover .gl-img { animation: none !important; }
+  html { scroll-behavior: auto; }
+}

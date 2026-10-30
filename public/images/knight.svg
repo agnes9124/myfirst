@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800">
+<defs>
+<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a0630"/><stop offset=".55" stop-color="#4a0a3a"/><stop offset="1" stop-color="#0a0a0a"/></linearGradient>
+<linearGradient id="armor" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3a1458"/><stop offset="1" stop-color="#0d0414"/></linearGradient>
+<radialGradient id="moon"><stop offset="0" stop-color="#ff003c"/><stop offset="1" stop-color="#ff003c" stop-opacity="0"/></radialGradient>
+<filter id="glow"><feGaussianBlur stdDeviation="6"/></filter>
+</defs>
+<rect width="600" height="800" fill="url(#sky)"/>
+<circle cx="300" cy="260" r="230" fill="url(#moon)" opacity=".55"/>
+<circle cx="300" cy="260" r="120" fill="#ff003c" opacity=".35"/>
+<g opacity=".5" fill="#8a2be2"><rect x="0" y="120" width="600" height="3"/><rect x="0" y="330" width="420" height="6"/><rect x="180" y="470" width="420" height="4"/><rect x="0" y="610" width="300" height="8"/></g>
+<!-- sword -->
+<g><rect x="468" y="120" width="16" height="560" fill="#d9d2e8"/><rect x="474" y="120" width="4" height="560" fill="#ff003c" opacity=".8"/><rect x="430" y="560" width="92" height="14" fill="#8a2be2"/><rect x="468" y="574" width="16" height="70" fill="#2a0a3a"/></g>
+<!-- body -->
+<path d="M120 800 L150 600 Q170 520 300 500 Q430 520 450 600 L480 800 Z" fill="url(#armor)" stroke="#8a2be2" stroke-width="3"/>
+<path d="M130 610 Q95 580 105 530 L190 540 L200 620 Z" fill="#2a0a3a" stroke="#ff003c" stroke-width="3"/>
+<path d="M470 610 Q505 580 495 530 L410 540 L400 620 Z" fill="#2a0a3a" stroke="#ff003c" stroke-width="3"/>
+<!-- helmet -->
+<path d="M200 470 L190 300 Q190 160 300 140 Q410 160 410 300 L400 470 Q300 520 200 470 Z" fill="url(#armor)" stroke="#8a2be2" stroke-width="4"/>
+<path d="M300 140 L300 250" stroke="#ff003c" stroke-width="5"/>
+<path d="M300 140 Q270 90 240 70 M300 140 Q330 90 360 70" stroke="#ff003c" stroke-width="6" fill="none"/>
+<rect x="215" y="285" width="170" height="52" fill="#050008"/>
+<!-- eyes -->
+<g filter="url(#glow)"><path d="M232 300 L282 312 L232 326 Z" fill="#ff003c"/><path d="M368 300 L318 312 L368 326 Z" fill="#ff003c"/></g>
+<path d="M232 300 L282 312 L232 326 Z" fill="#ff5a7a"/><path d="M368 300 L318 312 L368 326 Z" fill="#ff5a7a"/>
+<path d="M240 390 L360 390 M245 415 L355 415 M252 440 L348 440" stroke="#8a2be2" stroke-width="3"/>
+<!-- glitch slices -->
+<g><rect x="90" y="400" width="200" height="14" fill="#ff003c" opacity=".7"/><rect x="330" y="215" width="190" height="10" fill="#8a2be2" opacity=".8"/><rect x="60" y="690" width="260" height="12" fill="#ff003c" opacity=".5"/></g>
+</svg>
