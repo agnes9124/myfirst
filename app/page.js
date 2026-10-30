@@ -1,4 +1,5 @@
 import Player from "../components/Player";
+import MusicGrid from "../components/MusicGrid";
 import { artist, wavs, releases, stories, gallery, links, contactEmail } from "../lib/data";
 
 const sc = `https://w.soundcloud.com/player/?url=${encodeURIComponent(artist.featured.url)}&color=%23ff003c&auto_play=false&hide_related=true&show_comments=false&visual=false`;
@@ -66,19 +67,8 @@ export default function Home() {
 
       {/* MUSIC */}
       <section id="music" className="mx-auto max-w-6xl px-4 py-20 sm:px-8">
-        <Title>Music</Title>
-        <div className="grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3">
-          {releases.map((r) => (
-            <a key={r.title} href="#listen" className="group block">
-              <div className="relative">
-                <Art hue={r.hue} className="aspect-square border border-white/10 group-hover:border-neon" />
-                <span className="absolute bottom-3 right-3 flex h-11 w-11 items-center justify-center bg-neon text-lg opacity-100 shadow-[0_0_20px_#ff003c] sm:opacity-0 sm:transition sm:group-hover:opacity-100">▶</span>
-              </div>
-              <p className="mt-3 truncate font-display text-xl sm:text-2xl">{r.title}</p>
-              <p className="text-xs text-white/50">{r.type}, {r.year}</p>
-            </a>
-          ))}
-        </div>
+        <Title sub="Tap a release to open its player.">Music</Title>
+        <MusicGrid releases={releases} />
       </section>
 
       {/* STORIES */}

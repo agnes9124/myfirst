@@ -15,9 +15,9 @@ function peaks(seed) {
   });
 }
 
-export default function Player({ tracks }) {
+export default function Player({ tracks, id = "player", autoStart = false }) {
   const [i, setI] = useState(0);
-  const [playing, setPlaying] = useState(false);
+  const [playing, setPlaying] = useState(autoStart);
   const [t, setT] = useState(0);
   const [demo, setDemo] = useState(false);
   const audio = useRef(null);
@@ -34,6 +34,17 @@ export default function Player({ tracks }) {
     if (i < tracks.length - 1) setI(i + 1);
     else { setPlaying(false); setT(0); pos.current = 0; }
   };
+
+  // only one player makes sound at a time; pause when removed
+  useEffect(() => {
+    const stop = (e) => { if (e.detail !== id) setPlaying(false); };
+    window.addEventListener("jackhr-play", stop);
+    const el = audio.current;
+    return () => { window.removeEventListener("jackhr-play", stop); if (el) el.pause(); };
+  }, [id]);
+  useEffect(() => {
+    if (playing) window.dispatchEvent(new CustomEvent("jackhr-play", { detail: id }));
+  }, [playing, id]);
 
   // load a track (starts silent, the ticker fades it in)
   useEffect(() => {
